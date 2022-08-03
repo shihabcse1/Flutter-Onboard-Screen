@@ -30,7 +30,10 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Text("Hello"),
+        title: Container(   // <--- Change here
+            padding: EdgeInsets.only(left: 16.0), // <-- play with the double number
+            child: Image.asset("images/logo.png",scale: 2,)
+        ),
         backgroundColor: Color(0xffE0115F),
       ),
       body: Column(
@@ -95,7 +98,7 @@ class _OnBoardingState extends State<OnBoarding> {
               color: Color(0xffE0115F),
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           ),
