@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 import 'content_model.dart';
 
@@ -34,6 +35,26 @@ class _OnBoardingState extends State<OnBoarding> {
             padding: EdgeInsets.only(left: 16.0), // <-- play with the double number
             child: Image.asset("images/logo.png",scale: 2,)
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ToggleSwitch(
+              minWidth: 80.0,
+              cornerRadius: 20.0,
+              activeBgColors: [[Color(0xffFFFFFF)!], [Color(0xffFFFFFF)!],],
+              activeFgColor: Color(0xffE0115F),
+              inactiveBgColor: Color(0xffF4ACC7),
+              inactiveFgColor: Color(0xffE0115F),
+              initialLabelIndex: 1,
+              totalSwitches: 2,
+              labels: ['English', 'বাংলা'],
+              radiusStyle: true,
+              onToggle: (index) {
+                print('switched to: $index');
+              },
+            ),
+          ),
+        ],
         backgroundColor: Color(0xffE0115F),
       ),
       body: Column(
