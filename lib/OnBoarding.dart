@@ -114,7 +114,7 @@ class _OnBoardingState extends State<OnBoarding> {
        margin: EdgeInsets.only(right: 5),
        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color(0xffE0115F),
+          color: currentIndex == index ? Color(0xffE0115F) : Color(0xffEFEFEF),
        ),
     );
   }
