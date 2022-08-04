@@ -39,7 +39,7 @@ class _OnBoardingState extends State<OnBoarding> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: ToggleSwitch(
-              minWidth: 80.0,
+              minWidth: 70.0,
               cornerRadius: 20.0,
               activeBgColors: [[Color(0xffFFFFFF)!], [Color(0xffFFFFFF)!],],
               activeFgColor: Color(0xffE0115F),
@@ -76,7 +76,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         Text(
                           contents[i].title!,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Color(0xffE0115F),
                           ),
@@ -110,11 +110,12 @@ class _OnBoardingState extends State<OnBoarding> {
               child: Text("Get Started"),
               onPressed: (){
                 if(currentIndex == contents.length - 1){
-                  _controller?.nextPage(
-                      duration: Duration(milliseconds: 100),
-                      curve: Curves.bounceIn,
-                  );
+
                 }
+                _controller?.nextPage(
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.bounceIn,
+                );
               },
               color: Color(0xffE0115F),
               textColor: Colors.white,

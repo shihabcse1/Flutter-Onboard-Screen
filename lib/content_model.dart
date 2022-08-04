@@ -20,7 +20,7 @@ List<UnBoardingContent> contents = [
   ),
   UnBoardingContent(
     title: "Ticketing for waterway",
-    image: 'images/air_ticket.svg',
+    image: 'images/tickiting_waterway.svg',
   ),
   UnBoardingContent(
     title: "Make tour",
