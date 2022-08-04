@@ -107,7 +107,7 @@ class _OnBoardingState extends State<OnBoarding> {
             margin: EdgeInsets.all(40.0),
             width: double.infinity,
             color: Colors.white,
-            child: FlatButton(
+            child: ElevatedButton(
               child: Text("Get Started"),
               onPressed: (){
                 if(currentIndex == contents.length - 1){
@@ -123,10 +123,12 @@ class _OnBoardingState extends State<OnBoarding> {
                   curve: Curves.bounceIn,
                 );
               },
-              color: Color(0xffE0115F),
-              textColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xffE0115F),
+                textStyle: TextStyle(color: Colors.white),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
           ),
