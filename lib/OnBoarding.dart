@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/login_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -110,7 +111,12 @@ class _OnBoardingState extends State<OnBoarding> {
               child: Text("Get Started"),
               onPressed: (){
                 if(currentIndex == contents.length - 1){
-
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => LoginPage(),
+                      ),
+                  );
                 }
                 _controller?.nextPage(
                   duration: Duration(milliseconds: 100),
