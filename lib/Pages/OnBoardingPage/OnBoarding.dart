@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-
+import 'components/button_get_started.dart';
 import 'content_model.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -102,36 +101,7 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
           ),
-          Container(
-            height: 55,
-            margin: EdgeInsets.all(40.0),
-            width: double.infinity,
-            color: Colors.white,
-            child: ElevatedButton(
-              child: Text("Get Started"),
-              onPressed: (){
-                if(currentIndex == contents.length - 1){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => LoginPage(),
-                      ),
-                  );
-                }
-                _controller?.nextPage(
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.bounceIn,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xffE0115F),
-                textStyle: TextStyle(color: Colors.white),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
+          ButtonGetStarted(currentIndex: currentIndex, controller: _controller),
         ],
       ),
     );
@@ -149,3 +119,5 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 }
+
+
