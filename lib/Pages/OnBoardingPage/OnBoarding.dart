@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_screen/login_page.dart';
+import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
