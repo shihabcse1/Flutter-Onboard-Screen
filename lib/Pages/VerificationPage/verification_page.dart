@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'components/richtext_component.dart';
+import 'components/verification_input_field.dart';
 
 class VerificationPage extends StatefulWidget {
   const VerificationPage({Key? key}) : super(key: key);
@@ -75,6 +77,33 @@ class _VerificationPageState extends State<VerificationPage> {
               SizedBox(width: deviceWeight * 0.03,),
             ],
           ),
+          Container(
+            width: double.infinity,
+            height: 48.0,
+            margin: EdgeInsets.only(
+              top: deviceHeight * 0.02,
+              left: deviceWeight * 0.03,
+              right: deviceWeight * 0.03,
+            ),
+            child: ElevatedButton(
+              onPressed: (){},
+              child: Text(
+                "Verify",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xffE0115F),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: deviceHeight * 0.03,),
+          RichTextComponent(),
 
         ],
       ),
@@ -82,38 +111,8 @@ class _VerificationPageState extends State<VerificationPage> {
   }
 }
 
-class DigitInputVerification extends StatelessWidget {
-  const DigitInputVerification({
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 48.0,
-      width: 48.0,
-      decoration: BoxDecoration(
-        color: Color(0xffEFEFEF),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Center(
-        child: TextField(
-          onChanged: (value){
-            if (value.length == 1){
-              FocusScope.of(context).nextFocus();
-            }
-          },
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(1),
-            FilteringTextInputFormatter.digitsOnly,
-          ],
-          decoration: InputDecoration(
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+
+
+
