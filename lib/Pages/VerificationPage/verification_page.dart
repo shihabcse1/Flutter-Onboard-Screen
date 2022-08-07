@@ -1,6 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'components/button_verify.dart';
 import 'components/richtext_component.dart';
 import 'components/verification_input_field.dart';
 
@@ -55,7 +55,6 @@ class _VerificationPageState extends State<VerificationPage> {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              //color: Color(0xffE0115F),
             ),
           ),
           SizedBox(height: deviceHeight * 0.01,),
@@ -77,31 +76,7 @@ class _VerificationPageState extends State<VerificationPage> {
               SizedBox(width: deviceWeight * 0.03,),
             ],
           ),
-          Container(
-            width: double.infinity,
-            height: 48.0,
-            margin: EdgeInsets.only(
-              top: deviceHeight * 0.02,
-              left: deviceWeight * 0.03,
-              right: deviceWeight * 0.03,
-            ),
-            child: ElevatedButton(
-              onPressed: (){},
-              child: Text(
-                "Verify",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xffE0115F),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
-                ),
-              ),
-            ),
-          ),
+          ButtonVerify(deviceHeight: deviceHeight, deviceWeight: deviceWeight),
           SizedBox(height: deviceHeight * 0.03,),
           RichTextComponent(),
 
@@ -110,6 +85,7 @@ class _VerificationPageState extends State<VerificationPage> {
     );
   }
 }
+
 
 
 
