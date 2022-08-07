@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
+import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -259,7 +260,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         child: ElevatedButton(
                           onPressed: (){
-
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => VerificationPage(),
+                              ),
+                            );
                           },
                           child: Text(
                             "Sign Up",

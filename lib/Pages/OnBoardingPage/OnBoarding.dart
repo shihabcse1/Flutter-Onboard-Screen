@@ -75,6 +75,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       children: [
                         Text(
                           contents[i].title!,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
