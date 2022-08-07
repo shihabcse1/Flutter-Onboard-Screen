@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_screen/Pages/SignUpPage/sign_up_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class LoginPage extends StatelessWidget {
+import 'components/button_sign_in.dart';
+import 'components/button_sign_up.dart';
+import 'components/button_sign_up_with_facebok.dart';
+import 'components/button_sign_up_with_google.dart';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  @override
   Widget build(BuildContext context) {
+    //final deviceWeight = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWeight = MediaQuery.of(context).size.width;
-        
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -44,21 +54,20 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: deviceHeight * 0.68,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 20.0),
-                //color: Colors.red,
                 child: LayoutBuilder(builder: (ctx, constraints){
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: deviceHeight * 0.05,),
                       Text("Sign In",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
-                      //SizedBox(height: constraints.maxHeight * 0.078,),
+                      SizedBox(height: deviceHeight * 0.03,),
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
@@ -77,10 +86,9 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 0.3,),
+                      SizedBox(height: deviceHeight * 0.02,),
                       Container(
                         width: double.infinity,
-                        //height: constraints.maxHeight * 0.09,
                         height: 48.0,
                         decoration: BoxDecoration(
                           color: Color(0xffEFEFEF),
@@ -99,126 +107,41 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 0.3,),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextButton(
-                              onPressed: () {},
-                              child: Text("Forgot Password?",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                            onPressed: () {},
+                            child: Text("Forgot Password?",
+                              style: TextStyle(
+                                color: Colors.black,
                               ),
+                            ),
 
                           ),
                         ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        margin: EdgeInsets.only(
-                          top: 16.0,
-                        ),
-                        child: ElevatedButton(
-                          onPressed: (){},
-                          child: Text(
-                            "Sign In",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffE0115F),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ),
-                      ),
+                      SizedBox(height: deviceHeight * 0.02,),
+                      ButtonSignIn(),
+                      SizedBox(height: deviceHeight * 0.02,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("or"),
+                          Text(
+                            "or",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        margin: EdgeInsets.only(
-                          top: 16.0,
-                        ),
-                        child: ElevatedButton(
-                          onPressed: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => SignUpPage(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffE0115F),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        margin: EdgeInsets.only(
-                          top: 16.0,
-                        ),
-                        child: ElevatedButton(
-                          onPressed: (){},
-                          child: Text(
-                            "Sign up with Google",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffDE5246),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        margin: EdgeInsets.only(
-                          top: 16.0,
-                        ),
-                        child: ElevatedButton(
-                          onPressed: (){},
-                          child: Text(
-                            "Sign up with Facebook",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xff4267B2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ),
-                      ),
+                      SizedBox(height: deviceHeight * 0.02,),
+                      ButtonSignUp(),
+                      SizedBox(height: deviceHeight * 0.02,),
+                      ButtonSignUpWithGoogle(),
+                      SizedBox(height: deviceHeight * 0.02,),
+                      ButtonSignUpWithFacebook(),
 
                     ],
                   );
@@ -231,3 +154,11 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
