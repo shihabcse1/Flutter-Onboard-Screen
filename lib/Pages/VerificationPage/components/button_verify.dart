@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../HomePage/home_page.dart';
+
 class ButtonVerify extends StatelessWidget {
   const ButtonVerify({
     Key? key,
@@ -21,7 +23,14 @@ class ButtonVerify extends StatelessWidget {
         right: deviceWeight * 0.03,
       ),
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => HomePage(),
+            ),
+          );
+        },
         child: Text(
           "Verify",
           style: TextStyle(
