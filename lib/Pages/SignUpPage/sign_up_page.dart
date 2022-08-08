@@ -56,10 +56,8 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             children: [
               Container(
-                //height: deviceHeight * 0.68,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 20.0),
-                //color: Colors.red,
                 child: LayoutBuilder(builder: (ctx, constraints){
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +129,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         width: double.infinity,
-                        //height: constraints.maxHeight * 0.09,
                         height: 48.0,
                         decoration: BoxDecoration(
                           color: Color(0xffEFEFEF),
@@ -301,11 +298,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: Color(0xffE0115F),
                               ),
                             ),
-
                           ),
                         ],
                       ),
-
                     ],
                   );
                 },),

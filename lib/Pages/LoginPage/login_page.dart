@@ -14,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var _isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +99,19 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              obscureText: true,
+                              obscureText: _isVisible ? false : true,
                               decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  onPressed: (){
+                                    setState(() {
+                                      _isVisible = !_isVisible;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _isVisible ? Icons.visibility : Icons.visibility_off,
+                                    color: Colors.grey,
+                                  ),
+                                ),
                                 border: InputBorder.none,
                                 hintText: 'Password',
                               ),
