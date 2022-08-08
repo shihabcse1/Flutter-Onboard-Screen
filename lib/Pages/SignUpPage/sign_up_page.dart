@@ -64,13 +64,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: deviceHeight * 0.05,),
                       Text("Sign Up",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
-                      //SizedBox(height: constraints.maxHeight * 0.078,),
+                      SizedBox(height: deviceHeight * 0.03,),
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
@@ -89,8 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 0.3,),
-                      SizedBox(height: 0.3,),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
@@ -109,6 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
@@ -127,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         width: double.infinity,
                         //height: constraints.maxHeight * 0.09,
@@ -159,6 +161,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         width: double.infinity,
                         //height: constraints.maxHeight * 0.09,
@@ -234,6 +237,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
@@ -252,12 +256,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: deviceHeight * 0.02,),
                       Container(
                         width: double.infinity,
                         height: 48.0,
-                        margin: EdgeInsets.only(
-                          top: 16.0,
-                        ),
                         child: ElevatedButton(
                           onPressed: (){
                             Navigator.push(

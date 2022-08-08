@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: LayoutBuilder(builder: (ctx, constraints){
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
