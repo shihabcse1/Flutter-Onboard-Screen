@@ -36,7 +36,47 @@ class _HomePageState extends State<HomePage> {
         ],
         backgroundColor: Color(0xffE0115F),
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //SizedBox(width: 5,),
+                GestureDetector(
+                  onTap: () {
+                    print('onTap');
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 64.0,
+                    width: 64.0,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFADBE7),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white30,
+                          blurRadius: 2.0,
+                          spreadRadius: 0.0,
+                          offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                        ),
+                      ],
+                    ),
+                    child: SvgPicture.asset(
+                      "images/flight_icon.svg",
+                      //height: 300,
+                    ),
+                    //Image.asset("images/flight_icon.png",),
+                  ),
+                ),
 
+                //SizedBox(width: 5,),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

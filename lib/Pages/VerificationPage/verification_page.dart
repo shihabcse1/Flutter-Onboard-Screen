@@ -30,7 +30,7 @@ class _VerificationPageState extends State<VerificationPage> {
             child: ToggleSwitch(
               minWidth: 70.0,
               cornerRadius: 20.0,
-              activeBgColors: [[Color(0xffFFFFFF)!], [Color(0xffFFFFFF)!],],
+              activeBgColors: [[Color(0xffFFFFFF)], [Color(0xffFFFFFF)],],
               activeFgColor: Color(0xffE0115F),
               inactiveBgColor: Color(0xffF4ACC7),
               inactiveFgColor: Color(0xffE0115F),
