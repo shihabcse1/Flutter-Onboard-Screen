@@ -5,7 +5,7 @@ class IconContent {
   IconContent({this.title, this.image});
 }
 
-List<IconContent> contents = [
+List<IconContent> contentsHomepage = [
   IconContent(
     title: "Air",
     image: "images/flight_icon.svg",
@@ -15,12 +15,12 @@ List<IconContent> contents = [
     image: "images/residence_icon.svg",
   ),
   IconContent(
-    title: "bus",
+    title: "Bus",
     image: "images/bus_icon.svg",
   ),
   IconContent(
     title: "Rental",
-    image: 'rental_icon.svg',
+    image: "images/rental_icon.svg",
   ),
   IconContent(
     title: "Launch",

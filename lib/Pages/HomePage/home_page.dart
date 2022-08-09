@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/Pages/HomePage/home_icon_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,39 +40,152 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //SizedBox(width: 5,),
-                GestureDetector(
-                  onTap: () {
-                    print('onTap');
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 64.0,
-                    width: 64.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFADBE7),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white30,
-                          blurRadius: 2.0,
-                          spreadRadius: 0.0,
-                          offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                        ),
-                      ],
-                    ),
-                    child: SvgPicture.asset(
-                      "images/flight_icon.svg",
-                      //height: 300,
-                    ),
-                    //Image.asset("images/flight_icon.png",),
-                  ),
-                ),
+            Column(
 
-                //SizedBox(width: 5,),
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //SizedBox(width: 5,),
+                    GestureDetector(
+                      onTap: () {
+                        print('onTap');
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 64.0,
+                            width: 64.0,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFADBE7),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white30,
+                                  blurRadius: 2.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                ),
+                              ],
+                            ),
+                            child: SvgPicture.asset(
+                              contentsHomepage[0].image!,
+                              //height: 300,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(contentsHomepage[0].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                        ],
+                      ),
+                    ),
+                    //SizedBox(width: 5,),
+                    GestureDetector(
+                      onTap: () {
+                        print('onTap');
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 64.0,
+                            width: 64.0,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFADBE7),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white30,
+                                  blurRadius: 2.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                ),
+                              ],
+                            ),
+                            child: SvgPicture.asset(
+                              contentsHomepage[1].image!,
+                              //height: 300,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(contentsHomepage[1].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        print('onTap');
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 64.0,
+                            width: 64.0,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFADBE7),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white30,
+                                  blurRadius: 2.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                ),
+                              ],
+                            ),
+                            child: SvgPicture.asset(
+                              contentsHomepage[2].image!,
+                              //height: 300,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(contentsHomepage[2].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        print('onTap');
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 64.0,
+                            width: 64.0,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFADBE7),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white30,
+                                  blurRadius: 2.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                ),
+                              ],
+                            ),
+                            child: SvgPicture.asset(
+                              contentsHomepage[3].image!,
+                              //height: 300,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(contentsHomepage[3].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
