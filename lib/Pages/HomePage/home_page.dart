@@ -12,6 +12,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final String image;
+    final Function press;
+
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -384,17 +387,105 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: 10.0,),
 
-                Container(
-                  width: 300,
-                  height: 285,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    image: DecorationImage(image: AssetImage("images/tourest_place_one.png")),
-                  ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: (){
 
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: 10,
+                              top: 10,
+                            bottom: 10,
+                          ),
+                          width: 270,
+                          height: 293,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.0),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                                image: AssetImage("images/tourest_place_one.png")
+                            ),
+                          ),
+
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                            bottom: 10,
+                          ),
+                          width: 270,
+                          height: 293,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.0),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage("images/tourest_place_one.png")
+                            ),
+                          ),
+
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
               ],
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(
+          left: 30.0,
+          right: 30.0,
+        ),
+        height: 80,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, -10),
+              blurRadius: 35,
+              color: Colors.white.withOpacity(0.38),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+                onPressed: (){
+
+                },
+                icon: SvgPicture.asset("images/home_icon.svg")
+            ),
+            IconButton(
+                onPressed: (){
+
+                },
+                icon: SvgPicture.asset("images/history_icon.svg")
+            ),
+            IconButton(
+                onPressed: (){
+
+                },
+                icon: SvgPicture.asset("images/inbox_icon.svg")
+            ),
+            IconButton(
+                onPressed: (){
+
+                },
+                icon: SvgPicture.asset("images/account_icon.svg")
             ),
           ],
         ),
