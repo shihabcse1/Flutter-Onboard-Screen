@@ -43,100 +43,126 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: const <Widget>[
             DrawerHeader(
+
               decoration: BoxDecoration(
-                color: Colors.green,
+                //color: Colors.white60,
+                image: DecorationImage(
+                    image: AssetImage("images/logo_red.png",)
+                ),
               ),
                 child: Text("Flight"),
+
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/flight_sidebar.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/flight_sidebar.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Flight'),
                 ),
-                title: Text('Flight'),
-              ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/stay_place_sidebar_icon.png"),
-                  color: Colors.black,
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                title: Text('Stay Place'),
-              ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/bus_sidebar_icon.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/stay_place_sidebar_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Stay Place'),
                 ),
-                title: Text('Bus'),
-              ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/rental_sidebar_icon.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/bus_sidebar_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Bus'),
                 ),
-                title: Text('Rental'),
-              ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/launch_sidebar_icon.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/rental_sidebar_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Rental'),
                 ),
-                title: Text('Launch'),
-              ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/tourist_package_sidebar_icon.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/launch_sidebar_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Launch'),
                 ),
-                title: Text('Tourist Package'),
-              ),
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
             ),
-            Card(
-              child: ListTile(
-                leading: ImageIcon(
-                  AssetImage("images/food_delivery_icon.png"),
-                  color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/tourist_package_sidebar_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Tourist Package'),
                 ),
-                title: Text('Food Delivery'),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Card(
+                child: ListTile(
+                  leading: ImageIcon(
+                    AssetImage("images/food_delivery_icon.png"),
+                    color: Colors.black,
+                  ),
+                  title: Text('Food Delivery'),
+                ),
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
               ),
             ),
 
