@@ -14,6 +14,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final String image;
     final Function press;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWeight = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -176,396 +178,407 @@ class _HomePageState extends State<HomePage> {
             Column(
 
               children: [
-                SizedBox(height: 20,),
+                SizedBox(height: deviceHeight * 0.02,),
                 Container(
-                  height: 48,
-                  child: ElevatedButton(
-                    onPressed: () {
+                  height: deviceHeight * 0.07,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
 
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('Switch to service provider'), // <-- Text
-                        SizedBox(
-                          width: 5,
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Switch to service provider'), // <-- Text
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon( // <-- Icon
+                            Icons.arrow_right_alt,
+                            size: 24.0,
+                          ),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xffE0115F),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
-                        Icon( // <-- Icon
-                          Icons.arrow_right_alt,
-                          size: 24.0,
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xffE0115F),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
                   ),
 
                 ),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //SizedBox(width: 5,),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[0].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[0].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    //SizedBox(width: 5,),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[1].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[1].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[2].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[2].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[3].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[3].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //SizedBox(width: 5,),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[4].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[4].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    //SizedBox(width: 5,),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0),
-                                  //shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[5].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[5].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[6].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[6].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print('onTap');
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 64.0,
-                            width: 64.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFADBE7),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white30,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                ),
-                              ],
-                            ),
-                            child: SvgPicture.asset(
-                              contentsHomepage[7].image!,
-                              //height: 300,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(contentsHomepage[7].title!, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Best Tourist Place",
-                      style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                        fontSize: 17.0,
-                    ),
-                    ),
-                    Text(
-                        "See all",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0,),
-
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+                SizedBox(height: deviceHeight * 0.02,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: (){
-
+                        onTap: () {
+                          print('onTap');
                         },
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              left: 10,
-                              top: 10,
-                            bottom: 10,
-                          ),
-                          width: 270,
-                          height: 293,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.0),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                                image: AssetImage("images/tourest_place_one.png")
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[0].image!,
+                                //height: 300,
+                              ),
                             ),
-                          ),
-
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[0].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-
+                        onTap: () {
+                          print('onTap');
                         },
-                        child: Container(
-                          margin: EdgeInsets.only(
-                            left: 10,
-                            top: 10,
-                            bottom: 10,
-                          ),
-                          width: 270,
-                          height: 293,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.0),
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("images/tourest_place_one.png")
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[1].image!,
+                                //height: 300,
+                              ),
                             ),
-                          ),
-
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[1].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[2].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[2].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[3].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[3].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
                         ),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: deviceHeight * 0.01,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[4].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[4].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0),
+                                    //shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[5].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[5].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[6].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[6].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('onTap');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 64.0,
+                              width: 64.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFADBE7),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white30,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                  ),
+                                ],
+                              ),
+                              child: SvgPicture.asset(
+                                contentsHomepage[7].image!,
+                                //height: 300,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(contentsHomepage[7].title!, style: TextStyle(fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: deviceHeight * 0.02,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Best Tourist Place",
+                        style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                          fontSize: 17.0,
+                      ),
+                      ),
+                      Text(
+                          "See all",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: deviceHeight * 0.01,),
+
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                left: 10,
+                                top: 10,
+                              bottom: 10,
+                            ),
+                            width: 270,
+                            height: 293,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                  image: AssetImage("images/tourest_place_one.png")
+                              ),
+                            ),
+
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              left: 10,
+                              top: 10,
+                              bottom: 10,
+                            ),
+                            width: 270,
+                            height: 293,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage("images/tourest_place_one.png")
+                              ),
+                            ),
+
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -579,7 +592,7 @@ class _HomePageState extends State<HomePage> {
           left: 30.0,
           right: 30.0,
         ),
-        height: 80,
+        height: deviceHeight * 0.1,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -597,7 +610,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: (){
 
                 },
-                icon: SvgPicture.asset("images/home_icon.svg")
+                icon: SvgPicture.asset("images/home_icon.svg",)
             ),
             IconButton(
                 onPressed: (){
