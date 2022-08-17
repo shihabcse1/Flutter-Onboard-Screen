@@ -7,7 +7,7 @@ class IconContent {
 
 List<IconContent> contentsHomepage = [
   IconContent(
-    title: "Air",
+    title: "Flight",
     image: "images/flight_icon.svg",
   ),
   IconContent(

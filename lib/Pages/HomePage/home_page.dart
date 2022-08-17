@@ -32,14 +32,118 @@ class _HomePageState extends State<HomePage> {
         title: Container(   // <--- Change here
             child: Text("Shafqat Ahmed"),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Image.asset("images/logo_only.png",),
-          ),
-        ],
         backgroundColor: Color(0xffE0115F),
       ),
+      endDrawer: Drawer(
+        backgroundColor: Colors.white,
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+                child: Text("Flight"),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/flight_sidebar.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Flight'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/stay_place_sidebar_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Stay Place'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/bus_sidebar_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Bus'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/rental_sidebar_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Rental'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/launch_sidebar_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Launch'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/tourist_package_sidebar_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Tourist Package'),
+              ),
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ImageIcon(
+                  AssetImage("images/food_delivery_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Food Delivery'),
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+
+          ],
+        )
+      ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
