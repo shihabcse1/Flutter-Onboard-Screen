@@ -10,6 +10,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int is_bottom_nav_selected = 1;
+
+  List<bool> isItemSelected = [
+    true,
+    false,
+    false,
+    false,
+  ];
+
+  void isSelected(int value){
+    setState(() {
+      for (int i = 0 ; i < isItemSelected.length; i++){
+        if(i == value){
+          isItemSelected[i] = true;
+        }else{
+          isItemSelected[i] = false;
+        }
+      }
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final String image;
@@ -52,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                     image: AssetImage("images/logo_red.png",)
                 ),
               ),
-                child: Text("Flight"),
+                child: Text(""),
 
             ),
             Padding(
@@ -180,7 +202,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 SizedBox(height: deviceHeight * 0.02,),
                 Container(
-                  height: deviceHeight * 0.07,
+                  height: deviceHeight * 0.06,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ElevatedButton(
@@ -530,7 +552,7 @@ class _HomePageState extends State<HomePage> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -608,27 +630,39 @@ class _HomePageState extends State<HomePage> {
           children: [
             IconButton(
                 onPressed: (){
-
+                  isSelected(0);
                 },
-                icon: SvgPicture.asset("images/home_icon.svg",)
+                icon: SvgPicture.asset(
+                  "images/home_icon.svg",
+                  color : isItemSelected[0] == true ? Color(0xffE0115F) : Color(0xff000000),
+                )
             ),
             IconButton(
                 onPressed: (){
-
+                  isSelected(1);
                 },
-                icon: SvgPicture.asset("images/history_icon.svg")
+                icon: SvgPicture.asset(
+                    "images/history_icon.svg",
+                  color : isItemSelected[1] == true ? Color(0xffE0115F) : Color(0xff000000),
+                ),
             ),
             IconButton(
                 onPressed: (){
-
+                  isSelected(2);
                 },
-                icon: SvgPicture.asset("images/inbox_icon.svg")
+                icon: SvgPicture.asset(
+                    "images/inbox_icon.svg",
+                  color : isItemSelected[2] == true ? Color(0xffE0115F) : Color(0xff000000),
+                ),
             ),
             IconButton(
                 onPressed: (){
-
+                  isSelected(3);
                 },
-                icon: SvgPicture.asset("images/account_icon.svg")
+                icon: SvgPicture.asset(
+                    "images/account_icon.svg",
+                  color : isItemSelected[3] == true ? Color(0xffE0115F) : Color(0xff000000),
+                ),
             ),
           ],
         ),

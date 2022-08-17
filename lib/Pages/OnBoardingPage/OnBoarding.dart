@@ -29,6 +29,9 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWeight = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Container(   // <--- Change here
