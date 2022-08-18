@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "500706996473",
+    "project_id": "book-store-ec385",
+    "storage_bucket": "book-store-ec385.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500706996473:android:3ae6830cd8304a0b4fb228",
+        "android_client_info": {
+          "package_name": "com.example.flutter_onboarding_screen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500706996473-fa42s8hq8jgfje3qd2m6cikvne87fq35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKnqI7o74r6g6iIBRv4XHf21iNoctFHY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500706996473-fa42s8hq8jgfje3qd2m6cikvne87fq35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
