@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/Provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class ButtonSignUpWithGoogle extends StatelessWidget {
   const ButtonSignUpWithGoogle({
@@ -11,7 +13,11 @@ class ButtonSignUpWithGoogle extends StatelessWidget {
       width: double.infinity,
       height: 48.0,
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: (){
+          final provider =
+          Provider.of<GoogleSignInProvider>(context, listen: false);
+          provider.googleLogin();
+        },
         child: Text(
           "Sign up with Google",
           style: TextStyle(
