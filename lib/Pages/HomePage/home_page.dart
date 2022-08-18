@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_icon_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +21,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   List<bool> isItemSelected = [
     true,
@@ -377,7 +380,8 @@ class _HomePageState extends State<HomePage> {
         child: CircleAvatar(
           radius: 16.0,
           child: ClipRRect(
-            child: Image.asset('images/dummy_profile_pic.png'),
+            //child: Image.asset('images/dummy_profile_pic.png'),
+            child: Image.network(user.photoURL!),
             borderRadius: BorderRadius.circular(50.0),
           ),
           backgroundColor: Colors.white,
@@ -385,7 +389,7 @@ class _HomePageState extends State<HomePage> {
       ),
       automaticallyImplyLeading: false,
       title: Container(   // <--- Change here
-          child: Text("Shafqat Ahmed"),
+          child: Text(user.displayName!),
       ),
       backgroundColor: Color(0xffE0115F),
     );
