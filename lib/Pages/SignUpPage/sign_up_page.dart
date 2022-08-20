@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -11,10 +15,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String _selectedValidCard = 'nid';
+
   var _isVisible1 = false;
   var _isVisible2 = false;
-
+  String _selectedValidCard = 'nid';
+  File? imageFileFront;
+  File? imageFileBack;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'test@gmail.com',
+                                hintText: 'Full Name',
                               ),
                             ),
                           ),
@@ -120,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'test@gmail.com',
+                                hintText: 'mdhasansridoy@gmail.com',
                               ),
                             ),
                           ),
@@ -218,41 +224,89 @@ class _SignUpPageState extends State<SignUpPage> {
                           Text("Birth Certificate"),
                         ],
                       ),
-                      Container(
-                        height: 48.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Center(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'test@gmail.com',
-                              ),
-                            ),
+                      GestureDetector(
+                        onTap: (){
+                          _attachNIDImageFileFront();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          height: 48.0,
+                          decoration: BoxDecoration(
+                              color: Color(0xffEFEFEF),
+                              borderRadius: BorderRadius.all(Radius.circular(12))
                           ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      "images/icon_attach_file.svg",
+                                      color: imageFileFront == null ? Colors.black : Color(0xffE0115F),
+                                    ),
+                                    Text(
+                                      '  Attach NID Front',
+                                      style: TextStyle(
+                                        color: imageFileFront == null ? Colors.black : Color(0xffE0115F),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ), // <-- Text
+                              imageFileFront == null ? SizedBox() : Icon( // <-- Icon
+                                Icons.check,
+                                size: 24.0,
+                                color: Color(0xffE0115F),
+                              ),
+                            ],
+                          ),
+
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.01,),
-                      Container(
-                        height: 48.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Center(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'test@gmail.com',
-                              ),
-                            ),
+                      GestureDetector(
+                        onTap: (){
+                          _attachNIDImageFileBack();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          height: 48.0,
+                          decoration: BoxDecoration(
+                              color: Color(0xffEFEFEF),
+                              borderRadius: BorderRadius.all(Radius.circular(12))
                           ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      "images/icon_attach_file.svg",
+                                      color: imageFileBack == null ? Colors.black : Color(0xffE0115F),
+                                    ),
+                                    Text(
+                                      '  Attach NID Back',
+                                      style: TextStyle(
+                                        color: imageFileBack == null ? Colors.black : Color(0xffE0115F),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ), // <-- Text
+                              imageFileBack == null ? SizedBox() : Icon( // <-- Icon
+                                Icons.check,
+                                size: 24.0,
+                                color: Color(0xffE0115F),
+                              ),
+                            ],
+                          ),
+
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.02,),
@@ -313,5 +367,22 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+  void _attachNIDImageFileFront() async{
+    final pathfile = await ImagePicker().getImage(source: ImageSource.camera);
+    setState(() {
+      imageFileFront = File(pathfile!.path);
+      //movie.image = imageFile!.path;
+    });
+  }
+
+  void _attachNIDImageFileBack() async{
+    final pathfile = await ImagePicker().getImage(source: ImageSource.camera);
+    setState(() {
+      imageFileBack = File(pathfile!.path);
+      //movie.image = imageFile!.path;
+    });
+  }
+
 }
 
