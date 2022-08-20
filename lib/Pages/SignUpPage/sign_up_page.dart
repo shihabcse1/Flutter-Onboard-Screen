@@ -11,7 +11,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  int _value = 1;
+  String _selectedValidCard = 'nid';
   var _isVisible1 = false;
   var _isVisible2 = false;
 
@@ -195,21 +195,23 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Radio(
-                              value: 1,
-                              groupValue: _value,
+                              value: 'nid',
+                              groupValue: _selectedValidCard,
                               onChanged: (value){
                                 setState(() {
-                                  //_value = value;
+                                  _selectedValidCard = value.toString();
                                 });
                               }
                           ),
                           //SizedBox(width: 5.0,),
                           Text("NID"),
                           Radio(
-                              value: 2,
-                              groupValue: _value,
+                              value: 'birth',
+                              groupValue: _selectedValidCard,
                               onChanged: (value){
-
+                                setState(() {
+                                  _selectedValidCard = value.toString();
+                                });
                               }
                           ),
                           //SizedBox(width: 5.0,),
