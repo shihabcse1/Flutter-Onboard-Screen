@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+
+import 'components/text_field_email.dart';
+import 'components/text_field_full_name.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -15,6 +19,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  final countryPicker = const FlCountryCodePicker();
+  CountryCode? countryCode;
 
   var _isVisible1 = false;
   var _isVisible2 = false;
@@ -76,24 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.03,),
-                      Container(
-                        height: 48.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Center(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Full Name',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      TextFieldFullName(),
                       SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         height: 48.0,
@@ -105,33 +95,57 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'test@gmail.com',
+                                //hintText: 'test@gmail.com',
+                                prefixIcon: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 6),
+                                  margin: EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () async{
+                                          final code = await countryPicker.showPicker(context: context);
+                                          setState(() {
+                                            countryCode = code;
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              child: countryCode != null ? countryCode!.flagImage : null,
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Icon(
+                                              Icons.arrow_drop_down,
+                                              size: 24,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                //color: Colors.black,
+                                                borderRadius: BorderRadius.circular(5),
+                                              ),
+                                              child: Text(
+                                                countryCode?.dialCode ?? "+880",
+                                                style: TextStyle(color: Colors.black),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.01,),
-                      Container(
-                        height: 48.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Center(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'mdhasansridoy@gmail.com',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      TextFieldEmail(),
                       SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         width: double.infinity,
@@ -191,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                                 border: InputBorder.none,
-                                hintText: 'Password',
+                                hintText: 'Confirm Password',
                               ),
                             ),
                           ),
@@ -385,4 +399,8 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 }
+
+
+
+
 
