@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -7,6 +10,8 @@ import 'components/button_sign_in.dart';
 import 'components/button_sign_up.dart';
 import 'components/button_sign_up_with_facebok.dart';
 import 'components/button_sign_up_with_google.dart';
+import 'package:http/http.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,7 +21,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   var _isVisible = false;
+  final countryPickerLogin = const FlCountryCodePicker();
+  CountryCode? countryCode;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
+      //stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if(snapshot.connectionState == ConnectionState.waiting){
           return Center(child: CircularProgressIndicator(),);
@@ -92,9 +103,50 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Center(
                                   child: TextField(
+                                    controller: phoneNumberController,
+                                    keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'test@gmail.com',
+                                      prefixIcon: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 6),
+                                        margin: EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () async{
+                                                final code = await countryPickerLogin.showPicker(context: context);
+                                                setState(() {
+                                                  countryCode = code;
+                                                });
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    child: countryCode != null ? countryCode!.flagImage : null,
+                                                  ),
+                                                  SizedBox(width: 10,),
+                                                  Icon(
+                                                    Icons.arrow_drop_down,
+                                                    size: 24,
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                      //color: Colors.black,
+                                                      borderRadius: BorderRadius.circular(5),
+                                                    ),
+                                                    child: Text(
+                                                      countryCode?.dialCode ?? "+880",
+                                                      style: TextStyle(color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -112,6 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Center(
                                   child: TextField(
+                                    controller: passwordController,
                                     obscureText: _isVisible ? false : true,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
@@ -149,7 +202,38 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
-                            ButtonSignIn(),
+                            //ButtonSignIn(),
+                            ///TOD0: Need to change
+                            Container(
+                              width: double.infinity,
+                              height: 48.0,
+                              child: ElevatedButton(
+
+                                onPressed: (){
+
+                                  print(phoneNumberController.text.trim().toString());
+                                  print(passwordController.text.trim().toString());
+
+                                  login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                                    if(countryCode != null) {
+                                        //login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                                    }
+                                },
+                                child: Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffE0115F),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40.0),
+                                  ),
+                                ),
+                              ),
+                            ),
                             SizedBox(height: deviceHeight * 0.02,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -181,6 +265,33 @@ class _LoginPageState extends State<LoginPage> {
         }
       }
     );
+  }
+
+  void login(String phoneNumberLogin, String passwordLogin) async{
+    String extraZero = "0";
+    phoneNumberLogin = extraZero + phoneNumberLogin;
+    print(phoneNumberLogin);
+    print(passwordLogin);
+      try{
+        Response response = await post(
+          Uri.parse("http://touch.raisawebcloud.com/api/login"),
+          body: {
+            'mobile' : phoneNumberLogin,
+            'password' : passwordLogin
+          }
+        );
+
+        if(response.statusCode == 200){
+          var data = jsonDecode(response.body.toString());
+          print("Login Successful");
+          print(data);
+        }else{
+          print("Failed");
+        }
+
+      }catch(e){
+        print(e.toString());
+      }
   }
 }
 

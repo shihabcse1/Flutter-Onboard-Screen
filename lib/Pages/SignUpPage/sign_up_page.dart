@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_pa
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:http/http.dart';
 
 import 'components/text_field_email.dart';
 import 'components/text_field_full_name.dart';
@@ -19,6 +21,15 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmController = TextEditingController();
+
+
+  //--------------------------------
 
   final countryPicker = const FlCountryCodePicker();
   CountryCode? countryCode;
@@ -83,7 +94,25 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.03,),
-                      TextFieldFullName(),
+                      Container(
+                        height: 48.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Center(
+                            child: TextField(
+                              controller: fullNameController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Full Name',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         height: 48.0,
@@ -95,10 +124,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
+                              controller: phoneNumberController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                //hintText: 'test@gmail.com',
                                 prefixIcon: Container(
                                   padding: EdgeInsets.symmetric(vertical: 6),
                                   margin: EdgeInsets.symmetric(horizontal: 8.0),
@@ -145,7 +174,28 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.01,),
-                      TextFieldEmail(),
+                      Container(
+                        height: 48.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Center(
+                            child: TextField(
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.done,
+                              maxLines: 1,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'mdhasansridoy@gmail.com',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(height: deviceHeight * 0.01,),
                       Container(
                         width: double.infinity,
@@ -158,6 +208,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
+                              controller: passwordController,
                               obscureText: _isVisible1 ? false : true,
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -191,6 +242,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
+                              controller: passwordConfirmController,
                               obscureText: _isVisible2 ? false : true,
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -329,11 +381,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 48.0,
                         child: ElevatedButton(
                           onPressed: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => VerificationPage(),
-                              ),
+                            registration(
+                                fullNameController.text.trim().toString(),
+                                phoneNumberController.text.trim().toString(),
+                                emailController.text.trim().toString(),
+                                passwordController.text.trim().toString(),
                             );
                           },
                           child: Text(
@@ -381,6 +433,43 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+
+  void registration(String fullName, String phoneNumberRegistration, String email, String password) async{
+    String extraZero = "0";
+    phoneNumberRegistration = extraZero + phoneNumberRegistration;
+    //print(phoneNumberLogin);
+    //print(passwordLogin);
+    try{
+      Response response = await post(
+          Uri.parse("http://touch.raisawebcloud.com/api/register"),
+          body: {
+            'first_name' : fullName,
+            'mobile' : phoneNumberRegistration,
+            'password' : password,
+            'email' : email,
+          }
+      );
+
+      if(response.statusCode == 200){
+        var data = jsonDecode(response.body.toString());
+        print("Account Created Successfully");
+        print(data);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => VerificationPage(),
+          ),
+        );
+      }else{
+        print("Failed");
+      }
+
+    }catch(e){
+      print(e.toString());
+    }
+  }
+
 
   void _attachNIDImageFileFront() async{
     final pathfile = await ImagePicker().getImage(source: ImageSource.camera);

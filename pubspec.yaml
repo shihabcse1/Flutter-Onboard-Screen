@@ -51,6 +51,12 @@ dependencies:
   # For Country code
   fl_country_code_picker: ^0.0.2+1
 
+  # For Http request
+  http: ^0.13.5
+
+  # For loading bar circular
+  modal_progress_hud_nsn: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
