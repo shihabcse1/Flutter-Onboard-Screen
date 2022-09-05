@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser;
 
   List<bool> isItemSelected = [
     true,
@@ -381,7 +381,7 @@ class _HomePageState extends State<HomePage> {
           radius: 16.0,
           child: ClipRRect(
             //child: Image.asset('images/dummy_profile_pic.png'),
-            child: Image.network(user.photoURL!),
+            //child: user.photoURL == null ? Image.asset('images/dummy_profile_pic.png') : Image.network(user.photoURL!),
             borderRadius: BorderRadius.circular(50.0),
           ),
           backgroundColor: Colors.white,
@@ -389,7 +389,7 @@ class _HomePageState extends State<HomePage> {
       ),
       automaticallyImplyLeading: false,
       title: Container(   // <--- Change here
-          child: Text(user.displayName!),
+          child: user?.displayName == null ? Text("Dummy") : Text("TESt"),
       ),
       backgroundColor: Color(0xffE0115F),
     );

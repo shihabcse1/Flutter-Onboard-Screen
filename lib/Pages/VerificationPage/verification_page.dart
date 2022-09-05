@@ -1,17 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'components/button_verify.dart';
 import 'components/richtext_component.dart';
 import 'components/verification_input_field.dart';
 
 class VerificationPage extends StatefulWidget {
-  const VerificationPage({Key? key}) : super(key: key);
+  String verificationPhoneNumber;
+  VerificationPage({required this.verificationPhoneNumber, Key? key}) : super(key: key);
 
   @override
   State<VerificationPage> createState() => _VerificationPageState();
 }
 
 class _VerificationPageState extends State<VerificationPage> {
+
   @override
   Widget build(BuildContext context) {
     final deviceWeight = MediaQuery.of(context).size.width;
@@ -84,6 +89,40 @@ class _VerificationPageState extends State<VerificationPage> {
       ),
     );
   }
+
+
+  void checkOTP(String phoneNumber, String otp) async{
+    //print(phoneNumberLogin);
+    //print(passwordLogin);
+    try{
+      Response response = await post(
+          Uri.parse("http://touch.raisawebcloud.com/api/check_otp"),
+          body: {
+            'mobile' : phoneNumber,
+            'otp' : otp,
+          }
+      );
+
+      if(response.statusCode == 200){
+        var data = jsonDecode(response.body.toString());
+        print("OTP Checked Successfully");
+        print(data);
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (_) => VerificationPage(verificationPhoneNumber: phoneNumberRegistration),
+        //   ),
+        // );
+      }else{
+        print("Failed");
+      }
+
+    }catch(e){
+      print(e.toString());
+    }
+  }
+
+
 }
 
 

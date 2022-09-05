@@ -14,9 +14,9 @@ class ButtonSignUpWithGoogle extends StatelessWidget {
       height: 48.0,
       child: ElevatedButton(
         onPressed: (){
-          final provider =
-          Provider.of<GoogleSignInProvider>(context, listen: false);
-          provider.googleLogin();
+          // final provider =
+          // Provider.of<GoogleSignInProvider>(context, listen: false);
+          // provider.googleLogin();
         },
         child: Text(
           "Sign up with Google",
