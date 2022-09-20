@@ -4,18 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
-// import 'package:get/get_core/src/get_main.dart';
+import 'package:flutter_onboarding_screen/Utils/utils.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-
-import 'components/button_sign_in.dart';
-import 'components/button_sign_up.dart';
+import '../../Resources/components/round_button.dart';
 import 'components/button_sign_up_with_facebok.dart';
 import 'components/button_sign_up_with_google.dart';
 import 'package:http/http.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-// import 'package:get/get.dart' hide Response;
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,8 +24,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  // FocusNode phoneNumberFocusNode = FocusNode();
+  // FocusNode passwordFocusNode = FocusNode();
+
 
   var _isVisible = false;
   final countryPickerLogin = const FlCountryCodePicker();
@@ -52,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Container( // <--- Change here
-                  padding: EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 16.0),
                   // <-- play with the double number
                   child: Image.asset("images/logo.png", scale: 2,)
               ),
@@ -63,9 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                     minWidth: 70.0,
                     cornerRadius: 20.0,
                     activeBgColors: [[Color(0xffFFFFFF)], [Color(0xffFFFFFF)],],
-                    activeFgColor: Color(0xffE0115F),
-                    inactiveBgColor: Color(0xffF4ACC7),
-                    inactiveFgColor: Color(0xffE0115F),
+                    activeFgColor: const Color(0xffE0115F),
+                    inactiveBgColor: const Color(0xffF4ACC7),
+                    inactiveFgColor: const Color(0xffE0115F),
                     initialLabelIndex: 1,
                     totalSwitches: 2,
                     labels: ['English', 'বাংলা'],
@@ -107,13 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Center(
                                   child: TextField(
-                                    controller: phoneNumberController,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    controller: _phoneNumberController,
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       prefixIcon: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 6),
-                                        margin: EdgeInsets.symmetric(horizontal: 8.0),
+                                        //padding: EdgeInsets.symmetric(vertical: 10),
+                                        margin: EdgeInsets.symmetric(horizontal: 8.0,),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -129,13 +132,13 @@ class _LoginPageState extends State<LoginPage> {
                                                   Container(
                                                     child: countryCode != null ? countryCode!.flagImage : null,
                                                   ),
-                                                  SizedBox(width: 10,),
+                                                  const SizedBox(width: 10,),
                                                   Icon(
                                                     Icons.arrow_drop_down,
                                                     size: 24,
                                                   ),
                                                   Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                                                     decoration: BoxDecoration(
                                                       //color: Colors.black,
                                                       borderRadius: BorderRadius.circular(5),
@@ -168,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Center(
                                   child: TextField(
-                                    controller: passwordController,
+                                    controller: _passwordController,
                                     obscureText: _isVisible ? false : true,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
@@ -208,35 +211,24 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: deviceHeight * 0.02,),
                             //ButtonSignIn(),
                             ///TOD0: Need to change
-                            Container(
-                              width: double.infinity,
-                              height: 48.0,
-                              child: ElevatedButton(
-
-                                onPressed: (){
-
-                                  print(phoneNumberController.text.trim().toString());
-                                  print(passwordController.text.trim().toString());
-
-                                  // login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                                  //   if(countryCode != null) {
-                                  //       login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                                  //   }
-                                },
-                                child: Text(
-                                  "Sign In",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xffE0115F),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(40.0),
-                                  ),
-                                ),
-                              ),
+                            // print(phoneNumberController.text.trim().toString());
+                            // print(passwordController.text.trim().toString());
+                            //
+                            // // login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                            // //   if(countryCode != null) {
+                            // //       login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                            // //   }
+                            RoundButton(
+                              title: "Sign in",
+                              onPress: (){
+                                if(_phoneNumberController.text.isEmpty){
+                                  Utils.flushBarErrorMessage("enter your email", context);
+                                }else if(_passwordController.text.isEmpty){
+                                  Utils.snackBar("enter your password", context);
+                                }else{
+                                  print("Api Hit");
+                                }
+                              },
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
                             Row(
@@ -251,7 +243,12 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
-                            ButtonSignUp(),
+                            RoundButton(
+                              title: "Sign up",
+                              onPress: (){
+
+                              },
+                            ),
                             SizedBox(height: deviceHeight * 0.02,),
                             ButtonSignUpWithGoogle(),
                             SizedBox(height: deviceHeight * 0.02,),

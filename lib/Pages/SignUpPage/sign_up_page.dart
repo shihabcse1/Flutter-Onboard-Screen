@@ -23,7 +23,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController fullNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmController = TextEditingController();
@@ -124,13 +124,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              controller: phoneNumberController,
+                              textAlignVertical: TextAlignVertical.center,
+                              controller: _phoneNumberController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 prefixIcon: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 6),
-                                  margin: EdgeInsets.symmetric(horizontal: 8.0),
+                                  padding: const EdgeInsets.symmetric(vertical: 6),
+                                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -383,7 +384,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onPressed: (){
                             registration(
                                 fullNameController.text.trim().toString(),
-                                phoneNumberController.text.trim().toString(),
+                                _phoneNumberController.text.trim().toString(),
                                 emailController.text.trim().toString(),
                                 passwordController.text.trim().toString(),
                             );
