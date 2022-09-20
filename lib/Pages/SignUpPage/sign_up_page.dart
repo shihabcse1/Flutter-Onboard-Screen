@@ -44,6 +44,17 @@ class _SignUpPageState extends State<SignUpPage> {
   File? imageFileFront;
   File? imageFileBack;
 
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _phoneNumberController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _passwordConfirmController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../Pages/HomePage/home_page.dart';
 import '../Repository/auth_repository.dart';
 import '../Utils/routes/route_names.dart';
 import '../Utils/utils.dart';
@@ -42,6 +43,12 @@ class AuthViewModel with ChangeNotifier {
 
       Utils.flushBarErrorMessage('Login Successfully', context);
       // Navigator.pushNamed(context, RoutesName.home);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(),
+        ),
+      );
       if(kDebugMode){
         print(value.toString());
 
@@ -65,6 +72,12 @@ class AuthViewModel with ChangeNotifier {
       setSignUpLoading(false);
       Utils.flushBarErrorMessage('SignUp Successfully', context);
       // Navigator.pushNamed(context, RoutesName.home);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(),
+        ),
+      );
       if(kDebugMode){
         print(value.toString());
 

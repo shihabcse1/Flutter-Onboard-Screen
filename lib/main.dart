@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:flutter_onboarding_screen/Pages/OnBoardingPage/OnBoarding.dart';
 import 'package:flutter_onboarding_screen/Provider/provider.dart';
+import 'package:flutter_onboarding_screen/ViewModel/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
