@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:flutter_onboarding_screen/Pages/SignUpPage/sign_up_page.dart';

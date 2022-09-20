@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/ViewModel/user_view_model.dart';
 import 'package:provider/provider.dart';
+import '../Model/user_model.dart';
 import '../Pages/HomePage/home_page.dart';
 import '../Repository/auth_repository.dart';
 import '../Utils/routes/route_names.dart';
@@ -34,15 +36,23 @@ class AuthViewModel with ChangeNotifier {
 
     _myRepo.loginApi(data).then((value){
       setLoading(false);
-      // final userPreference = Provider.of<UserViewModel>(context , listen: false);
-      // userPreference.saveUser(
-      //     UserModel(
-      //         token: value['token'].toString()
-      //     )
-      // );
+      final userPreference = Provider.of<UserViewModel>(context , listen: false);
+      userPreference.saveUser(
+          UserModel(
+            firstName: value['first_name'].toString(),
+            mobile: value['mobile'].toString(),
+            token: value['token'].toString(),
+          )
+      );
 
       Utils.flushBarErrorMessage('Login Successfully', context);
       // Navigator.pushNamed(context, RoutesName.home);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(),
+        ),
+      );
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -72,6 +82,12 @@ class AuthViewModel with ChangeNotifier {
       setSignUpLoading(false);
       Utils.flushBarErrorMessage('SignUp Successfully', context);
       // Navigator.pushNamed(context, RoutesName.home);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(),
+        ),
+      );
       Navigator.push(
         context,
         MaterialPageRoute(

@@ -8,6 +8,7 @@ import 'package:flutter_onboarding_screen/ViewModel/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Pages/splash_screen.dart';
 import 'ViewModel/auth_view_model.dart';
 // import 'package:get/get.dart';
 
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const OnBoarding(),
+        home: const SplashScreen(),
       ),
     );
   }

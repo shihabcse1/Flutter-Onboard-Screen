@@ -5,7 +5,7 @@ class UserModel {
   String? email;
   String? active;
   String? token;
-  int? status;
+  String? status;
   String? message;
 
   UserModel(
@@ -16,7 +16,8 @@ class UserModel {
         this.active,
         this.token,
         this.status,
-        this.message});
+        this.message
+      });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     firstName = json['first_name'];

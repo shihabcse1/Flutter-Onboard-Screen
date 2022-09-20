@@ -2,8 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_icon_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Model/user_model.dart';
+import '../../ViewModel/auth_view_model.dart';
+import '../../ViewModel/user_view_model.dart';
 import 'components/button_bus.dart';
 import 'components/button_flight.dart';
 import 'components/button_food.dart';
@@ -27,6 +31,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState(){
     super.initState();
+    //final userPreference = Provider.of<UserViewModel>(context);
+    getUserLoginSharePreference();
+    // getUserLoginSharePreference();
     // getUserLoginSharePreference();
   }
 
@@ -34,13 +41,14 @@ class _HomePageState extends State<HomePage> {
   String userName = "";
   int userStatus = 0;
 
-  // void getUserLoginSharePreference() async{
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     userName = sharedPreferences.getString("name")!;
-  //     userStatus = sharedPreferences.getInt("status")!;
-  //   });
-  // }
+  void getUserLoginSharePreference() async{
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    setState(() {
+      userName = sp.getString("first_name")!;
+      print("userName home "+userName);
+      //userStatus = sp.getInt("status")!;
+    });
+  }
 
 
   final user = FirebaseAuth.instance.currentUser;
@@ -67,6 +75,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userPreference = Provider.of<UserViewModel>(context);
+    Future<UserModel> getUserDate() => UserViewModel().getUser();
+
     final String image;
     final Function press;
     final deviceHeight = MediaQuery.of(context).size.height;
