@@ -41,7 +41,8 @@ class Utils {
     return ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             backgroundColor: Colors.red,
-            content: Text(message ))
+            content: Text(message )
+        )
     );
   }
 
