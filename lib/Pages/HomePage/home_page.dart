@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_icon_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/button_bus.dart';
 import 'components/button_flight.dart';
@@ -18,9 +19,29 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
+
+
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState(){
+    super.initState();
+    // getUserLoginSharePreference();
+  }
+
+
+  String userName = "";
+  int userStatus = 0;
+
+  // void getUserLoginSharePreference() async{
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     userName = sharedPreferences.getString("name")!;
+  //     userStatus = sharedPreferences.getInt("status")!;
+  //   });
+  // }
+
 
   final user = FirebaseAuth.instance.currentUser;
 
@@ -380,7 +401,7 @@ class _HomePageState extends State<HomePage> {
         child: CircleAvatar(
           radius: 16.0,
           child: ClipRRect(
-            //child: Image.asset('images/dummy_profile_pic.png'),
+            child: Image.asset('images/dummy_profile_pic.png'),
             //child: user.photoURL == null ? Image.asset('images/dummy_profile_pic.png') : Image.network(user.photoURL!),
             borderRadius: BorderRadius.circular(50.0),
           ),
@@ -389,7 +410,8 @@ class _HomePageState extends State<HomePage> {
       ),
       automaticallyImplyLeading: false,
       title: Container(   // <--- Change here
-          child: user?.displayName == null ? Text("Dummy") : Text("TESt"),
+          //child: user?.displayName == null ? Text("Dummy") : Text("TESt"),
+          child: userName == "" ? Text("Dummy") : Text(userName),
       ),
       backgroundColor: Color(0xffE0115F),
     );

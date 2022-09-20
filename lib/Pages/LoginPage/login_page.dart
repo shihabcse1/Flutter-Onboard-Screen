@@ -4,6 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
+// import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import 'components/button_sign_in.dart';
@@ -12,6 +15,7 @@ import 'components/button_sign_up_with_facebok.dart';
 import 'components/button_sign_up_with_google.dart';
 import 'package:http/http.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+// import 'package:get/get.dart' hide Response;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -214,10 +218,10 @@ class _LoginPageState extends State<LoginPage> {
                                   print(phoneNumberController.text.trim().toString());
                                   print(passwordController.text.trim().toString());
 
-                                  login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                                    if(countryCode != null) {
-                                        //login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                                    }
+                                  // login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                                  //   if(countryCode != null) {
+                                  //       login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
+                                  //   }
                                 },
                                 child: Text(
                                   "Sign In",
@@ -266,33 +270,73 @@ class _LoginPageState extends State<LoginPage> {
       }
     );
   }
+  /// TODO Login Function
+  // void login(String phoneNumberLogin, String passwordLogin) async{
+  //   String extraZero = "0";
+  //   phoneNumberLogin = extraZero + phoneNumberLogin;
+  //   print(phoneNumberLogin);
+  //   print(passwordLogin);
+  //     try{
+  //       Response response = await post(
+  //         Uri.parse("http://touch.raisawebcloud.com/api/login"),
+  //         body: {
+  //           'mobile' : phoneNumberLogin,
+  //           'password' : passwordLogin
+  //         }
+  //       );
+  //
+  //       if(response.statusCode == 200){
+  //         var data = jsonDecode(response.body.toString());
+  //         print("Login Successful");
+  //         print(data);
+  //         print(data['status']);
+  //         var statusAccount = data['status'];
+  //         var firstName = data['first_name'];
+  //         var phone = data['mobile'];
+  //
+  //
+  //         if (statusAccount == 1) {
+  //           // inspect(phone);
+  //           // inspect(password);
+  //           // inspect(statusCode);
+  //           final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //           await sharedPreferences.setString("name", firstName.toString());
+  //           await sharedPreferences.setInt("status", statusAccount);
+  //           //await sharedPreferences.setString("nextloginn", phone.toString());
+  //           //Get.offAll(() => const HomePage());
+  //           Navigator.pushAndRemoveUntil(
+  //               context,
+  //               MaterialPageRoute(
+  //                   builder: (BuildContext context) =>
+  //                       HomePage()),
+  //                   (Route<dynamic> route) => false);
+  //           //Fluttertoast.showToast(msg: "willkommen");
+  //         }
+  //         // else if (statusCode == 400) {
+  //         //   Fluttertoast.showToast(
+  //         //       msg:
+  //         //       "Es existiert kein Account mit diesen Daten. Bitte Registrieren.");
+  //         // } else if (statusCode == 600) {
+  //         //   Fluttertoast.showToast(msg: "Der Account wurde blockiert");
+  //         // } else if (statusCode == 700) {
+  //         //   Fluttertoast.showToast(
+  //         //       msg: "Die Praxis ist bis zum $date geschlossen");
+  //         // } else {
+  //         //   //debug the responce Status code
+  //         //   inspect("loginUser API $statusCode");
+  //         //   Fluttertoast.showToast(msg: "Can't proccess request");
+  //         // }
+  //
+  //
+  //       }else{
+  //         print("Failed");
+  //       }
+  //
+  //     }catch(e){
+  //       print(e.toString());
+  //     }
+  // }
 
-  void login(String phoneNumberLogin, String passwordLogin) async{
-    String extraZero = "0";
-    phoneNumberLogin = extraZero + phoneNumberLogin;
-    print(phoneNumberLogin);
-    print(passwordLogin);
-      try{
-        Response response = await post(
-          Uri.parse("http://touch.raisawebcloud.com/api/login"),
-          body: {
-            'mobile' : phoneNumberLogin,
-            'password' : passwordLogin
-          }
-        );
-
-        if(response.statusCode == 200){
-          var data = jsonDecode(response.body.toString());
-          print("Login Successful");
-          print(data);
-        }else{
-          print("Failed");
-        }
-
-      }catch(e){
-        print(e.toString());
-      }
-  }
 }
 
 

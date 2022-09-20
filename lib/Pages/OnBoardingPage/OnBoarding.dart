@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'components/button_get_started.dart';
 import 'content_model.dart';
@@ -7,19 +9,37 @@ import 'content_model.dart';
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
 
+
   @override
   State<OnBoarding> createState() => _OnBoardingState();
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  int currentIndex = 0;
-  PageController? _controller;
 
   @override
   void initState() {
+    // checkLogin();
     _controller = PageController(initialPage: 0);
     super.initState();
   }
+
+  // void checkLogin() async{
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   String? userName = sharedPreferences.getString("name");
+  //   int? userStatus = sharedPreferences.getInt("status");
+  //   if(userStatus != null){
+  //     Navigator.pushAndRemoveUntil(
+  //         context,
+  //         MaterialPageRoute(
+  //             builder: (BuildContext context) =>
+  //                 HomePage()),
+  //             (Route<dynamic> route) => false);
+  //   }
+  // }
+
+  int currentIndex = 0;
+  PageController? _controller;
+
 
   @override
   void dispose() {
