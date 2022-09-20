@@ -3,14 +3,14 @@ import '../color.dart';
 
 class RoundButton extends StatelessWidget {
 
-  final String title ;
-  final bool loading ;
-  final VoidCallback onPress ;
+  final String title;
+  final bool loading;
+  final VoidCallback onPress;
 
-  const RoundButton({Key? key ,
+  const RoundButton({Key? key,
     required this.title,
-    this.loading = false ,
-    required this.onPress ,
+    this.loading = false,
+    required this.onPress,
   }) : super(key: key);
 
   @override

@@ -4,11 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
+import 'package:flutter_onboarding_screen/Utils/routes/route_names.dart';
 import 'package:flutter_onboarding_screen/Utils/utils.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import '../../Resources/components/round_button.dart';
+import '../../ViewModel/auth_view_model.dart';
+import '../SignUpPage/sign_up_page.dart';
 import 'components/button_sign_up_with_facebok.dart';
 import 'components/button_sign_up_with_google.dart';
 import 'package:http/http.dart';
@@ -35,8 +39,21 @@ class _LoginPageState extends State<LoginPage> {
   final countryPickerLogin = const FlCountryCodePicker();
   CountryCode? countryCode;
 
+
+  @override
+  void dispose() {
+
+    _phoneNumberController.dispose();
+    _passwordController.dispose();
+
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    final authViewModelProvider = Provider.of<AuthViewModel>(context);
     //final deviceWeight = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
 
@@ -226,6 +243,12 @@ class _LoginPageState extends State<LoginPage> {
                                 }else if(_passwordController.text.isEmpty){
                                   Utils.snackBar("enter your password", context);
                                 }else{
+                                  String phoneNumberLogin = "0" + _phoneNumberController.text.trim().toString();
+                                  Map data = {
+                                    'mobile' : phoneNumberLogin,
+                                    'password' : _passwordController.text.trim().toString(),
+                                  };
+                                  authViewModelProvider.loginApi(data, context);
                                   print("Api Hit");
                                 }
                               },
@@ -246,7 +269,13 @@ class _LoginPageState extends State<LoginPage> {
                             RoundButton(
                               title: "Sign up",
                               onPress: (){
-
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SignUpPage(),
+                                  ),
+                                );
+                                print("hello working");
                               },
                             ),
                             SizedBox(height: deviceHeight * 0.02,),

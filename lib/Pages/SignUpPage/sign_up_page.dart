@@ -5,6 +5,7 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
+import 'package:flutter_onboarding_screen/Resources/components/round_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -377,32 +378,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       SizedBox(height: deviceHeight * 0.02,),
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        child: ElevatedButton(
-                          onPressed: (){
-                            registration(
-                                fullNameController.text.trim().toString(),
-                                _phoneNumberController.text.trim().toString(),
-                                emailController.text.trim().toString(),
-                                passwordController.text.trim().toString(),
-                            );
-                          },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffE0115F),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ),
+                      RoundButton(
+                        title: "Sign up",
+                        onPress: (){
+                        }
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

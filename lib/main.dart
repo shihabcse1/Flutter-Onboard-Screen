@@ -6,6 +6,8 @@ import 'package:flutter_onboarding_screen/Pages/OnBoardingPage/OnBoarding.dart';
 import 'package:flutter_onboarding_screen/Provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'ViewModel/auth_view_model.dart';
 // import 'package:get/get.dart';
 
 
@@ -37,13 +39,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const OnBoarding(),
       ),
-      home: const OnBoarding(),
     );
   }
 }
