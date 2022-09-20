@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_icon_model.dart';
+import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,6 +79,7 @@ class _HomePageState extends State<HomePage> {
 
     final userPreference = Provider.of<UserViewModel>(context);
     Future<UserModel> getUserDate() => UserViewModel().getUser();
+    print(userPreference);
 
     final String image;
     final Function press;
@@ -86,7 +88,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: buildAppBarHomePage(),
-      endDrawer: buildDrawerHomePage(),
+      endDrawer: buildDrawerHomePage(userPreference),
 
       body: SingleChildScrollView(
         child: Column(
@@ -268,7 +270,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Drawer buildDrawerHomePage() {
+  Drawer buildDrawerHomePage(UserViewModel userPreference) {
     return Drawer(
       backgroundColor: Colors.white,
       // Add a ListView to the drawer. This ensures the user can scroll
@@ -276,7 +278,7 @@ class _HomePageState extends State<HomePage> {
       // space to fit everything.
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
+        children: <Widget>[
           DrawerHeader(
 
             decoration: BoxDecoration(
@@ -400,7 +402,33 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Card(
+              child: ListTile(
+                onTap: () {
+                  userPreference.remove().then((value){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => LoginPage(),
+                      ),
+                    );
+                  });
+                },
+                leading: ImageIcon(
+                  AssetImage("images/food_delivery_icon.png"),
+                  color: Colors.black,
+                ),
+                title: Text('Logout'),
 
+              ),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+          ),
         ],
       )
     );
