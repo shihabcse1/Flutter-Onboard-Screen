@@ -8,9 +8,12 @@ import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_pa
 import 'package:flutter_onboarding_screen/Resources/components/round_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:http/http.dart';
 
+import '../../Utils/utils.dart';
+import '../../ViewModel/auth_view_model.dart';
 import 'components/text_field_email.dart';
 import 'components/text_field_full_name.dart';
 
@@ -23,11 +26,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
 
-  TextEditingController fullNameController = TextEditingController();
+  TextEditingController _fullNameController = TextEditingController();
   TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfirmController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordConfirmController = TextEditingController();
 
 
   //--------------------------------
@@ -44,8 +47,10 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
 
+    final authViewModelProvider = Provider.of<AuthViewModel>(context);
+
     final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWeight = MediaQuery.of(context).size.width;
+    //final deviceWeight = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -105,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              controller: fullNameController,
+                              controller: _fullNameController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Full Name',
@@ -186,7 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              controller: emailController,
+                              controller: _emailController,
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.done,
                               maxLines: 1,
@@ -210,7 +215,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              controller: passwordController,
+                              controller: _passwordController,
                               obscureText: _isVisible1 ? false : true,
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -244,7 +249,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Center(
                             child: TextField(
-                              controller: passwordConfirmController,
+                              controller: _passwordConfirmController,
                               obscureText: _isVisible2 ? false : true,
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -381,7 +386,26 @@ class _SignUpPageState extends State<SignUpPage> {
                       RoundButton(
                         title: "Sign up",
                         onPress: (){
-                        }
+                          if(_fullNameController.text.isEmpty){
+                            Utils.flushBarErrorMessage("enter your name", context);
+                          }else if(_phoneNumberController.text.isEmpty){
+                            Utils.flushBarErrorMessage("enter your phone number", context);
+                          }else if(_passwordController.text.isEmpty){
+                            Utils.snackBar("enter your password", context);
+                          }else if(_passwordController.text.trim().toString() != _passwordConfirmController.text.trim().toString()){
+                            Utils.flushBarErrorMessage("password didn't match", context);
+                          }else{
+                            String phoneNumberLogin = "0" + _phoneNumberController.text.trim().toString();
+                            Map data = {
+                              'first_name' : _fullNameController.text.trim().toString(),
+                              'mobile' : phoneNumberLogin,
+                              'password' : _passwordController.text.trim().toString(),
+                              'email' : _emailController.text.trim().toString(),
+                            };
+                            authViewModelProvider.signUpApi(data , context);
+                            print("Api Hit");
+                          }
+                        },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -415,40 +439,40 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 
-  void registration(String fullName, String phoneNumberRegistration, String email, String password) async{
-    String extraZero = "0";
-    phoneNumberRegistration = extraZero + phoneNumberRegistration;
-    //print(phoneNumberLogin);
-    //print(passwordLogin);
-    try{
-      Response response = await post(
-          Uri.parse("http://touch.raisawebcloud.com/api/register"),
-          body: {
-            'first_name' : fullName,
-            'mobile' : phoneNumberRegistration,
-            'password' : password,
-            'email' : email,
-          }
-      );
-
-      if(response.statusCode == 200){
-        var data = jsonDecode(response.body.toString());
-        print("Account Created Successfully");
-        print(data);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => VerificationPage(verificationPhoneNumber: phoneNumberRegistration),
-          ),
-        );
-      }else{
-        print("Failed");
-      }
-
-    }catch(e){
-      print(e.toString());
-    }
-  }
+  // void registration(String fullName, String phoneNumberRegistration, String email, String password) async{
+  //   String extraZero = "0";
+  //   phoneNumberRegistration = extraZero + phoneNumberRegistration;
+  //   //print(phoneNumberLogin);
+  //   //print(passwordLogin);
+  //   try{
+  //     Response response = await post(
+  //         Uri.parse("http://touch.raisawebcloud.com/api/register"),
+  //         body: {
+  //           'first_name' : fullName,
+  //           'mobile' : phoneNumberRegistration,
+  //           'password' : password,
+  //           'email' : email,
+  //         }
+  //     );
+  //
+  //     if(response.statusCode == 200){
+  //       var data = jsonDecode(response.body.toString());
+  //       print("Account Created Successfully");
+  //       print(data);
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (_) => VerificationPage(verificationPhoneNumber: phoneNumberRegistration),
+  //         ),
+  //       );
+  //     }else{
+  //       print("Failed");
+  //     }
+  //
+  //   }catch(e){
+  //     print(e.toString());
+  //   }
+  // }
 
 
   void _attachNIDImageFileFront() async{

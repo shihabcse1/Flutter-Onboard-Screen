@@ -10,15 +10,15 @@ class AuthViewModel with ChangeNotifier {
 
   final _myRepo = AuthRepository();
 
-  bool _loading = false;
-  bool get loading => _loading;
+  bool _signInLoading = false;
+  bool get singInLoading => _signInLoading;
 
   bool _signUpLoading = false;
   bool get signUpLoading => _signUpLoading;
 
 
   setLoading(bool value){
-    _loading = value;
+    _signInLoading = value;
     notifyListeners();
   }
 
@@ -64,7 +64,7 @@ class AuthViewModel with ChangeNotifier {
     _myRepo.signUpApi(data).then((value){
       setSignUpLoading(false);
       Utils.flushBarErrorMessage('SignUp Successfully', context);
-      Navigator.pushNamed(context, RoutesName.home);
+      // Navigator.pushNamed(context, RoutesName.home);
       if(kDebugMode){
         print(value.toString());
 

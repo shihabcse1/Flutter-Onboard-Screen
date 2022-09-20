@@ -239,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                               title: "Sign in",
                               onPress: (){
                                 if(_phoneNumberController.text.isEmpty){
-                                  Utils.flushBarErrorMessage("enter your email", context);
+                                  Utils.flushBarErrorMessage("enter your phone number", context);
                                 }else if(_passwordController.text.isEmpty){
                                   Utils.snackBar("enter your password", context);
                                 }else{
