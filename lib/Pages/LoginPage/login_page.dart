@@ -226,15 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
-                            //ButtonSignIn(),
-                            ///TOD0: Need to change
-                            // print(phoneNumberController.text.trim().toString());
-                            // print(passwordController.text.trim().toString());
-                            //
-                            // // login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                            // //   if(countryCode != null) {
-                            // //       login(phoneNumberController.text.trim().toString(), passwordController.text.trim().toString());
-                            // //   }
+
                             RoundButton(
                               title: "Sign in",
                               onPress: (){

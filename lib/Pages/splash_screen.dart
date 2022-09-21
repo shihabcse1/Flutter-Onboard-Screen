@@ -16,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // print("Splash");
+
     splashServices.checkAuthentication(context);
   }
 

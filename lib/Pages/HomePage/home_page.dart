@@ -32,20 +32,20 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState(){
     super.initState();
-    //final userPreference = Provider.of<UserViewModel>(context);
     getUserLoginSharePreference();
-    // getUserLoginSharePreference();
-    // getUserLoginSharePreference();
   }
 
 
   String userName = "";
+  String userNameSignUp = "";
   int userStatus = 0;
 
   void getUserLoginSharePreference() async{
     SharedPreferences sp = await SharedPreferences.getInstance();
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
       userName = sp.getString("first_name")!;
+      userNameSignUp = sharedPreferences.getString("first_name")!;
       print("userName home "+userName);
       //userStatus = sp.getInt("status")!;
     });
@@ -273,14 +273,10 @@ class _HomePageState extends State<HomePage> {
   Drawer buildDrawerHomePage(UserViewModel userPreference) {
     return Drawer(
       backgroundColor: Colors.white,
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-
             decoration: BoxDecoration(
               //color: Colors.white60,
               image: DecorationImage(
@@ -451,7 +447,7 @@ class _HomePageState extends State<HomePage> {
       automaticallyImplyLeading: false,
       title: Container(   // <--- Change here
           //child: user?.displayName == null ? Text("Dummy") : Text("TESt"),
-          child: userName == "" ? Text("Dummy") : Text(userName),
+          child: userName == "" ? Text(userNameSignUp) : Text(userName),
       ),
       backgroundColor: Color(0xffE0115F),
     );

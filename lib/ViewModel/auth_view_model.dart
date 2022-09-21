@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
 import 'package:flutter_onboarding_screen/ViewModel/user_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Model/user_model.dart';
 import '../Pages/HomePage/home_page.dart';
 import '../Repository/auth_repository.dart';
-import '../Utils/routes/route_names.dart';
 import '../Utils/utils.dart';
 import 'package:flutter/foundation.dart';
 
@@ -53,15 +54,8 @@ class AuthViewModel with ChangeNotifier {
           builder: (_) => HomePage(),
         ),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => HomePage(),
-        ),
-      );
       if(kDebugMode){
         print(value.toString());
-
       }
     }).onError((error, stackTrace){
       setLoading(false);
@@ -78,20 +72,41 @@ class AuthViewModel with ChangeNotifier {
 
     setSignUpLoading(true);
 
-    _myRepo.signUpApi(data).then((value){
+    _myRepo.signUpApi(data).then((value) async {
       setSignUpLoading(false);
       Utils.flushBarErrorMessage('SignUp Successfully', context);
+
+
+
+      // final userPreference = Provider.of<UserViewModel>(context , listen: false);
+      // userPreference.saveUser(
+      //     UserModel(
+      //       firstName: value['first_name'].toString(),
+      //       mobile: value['user_data']['first_name'].toString()),
+      //       token: value['token'].toString(),
+      //     )
+      // );
+
+      print("This is value" + value.toString());
+      print("This is userdata" + value['user_data'].toString());
+      print("This is userName" + value['user_data']['first_name'].toString());
+      print("This is Status" + value['status'].toString());
       // Navigator.pushNamed(context, RoutesName.home);
+
+      ////////////////////////////////////////////////////////
+
+      final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      await sharedPreferences.setString("first_name", value['user_data']['first_name'].toString());
+      await sharedPreferences.setString("mobile", value['user_data']['mobile'].toString());
+      await sharedPreferences.setString("status", value['status'].toString());
+      String verificationPhoneNumber = value['user_data']['mobile'].toString();
+
+      ///////////////////////////////////////////////////
+
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => HomePage(),
-        ),
-      );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => HomePage(),
+          builder: (_) => VerificationPage(verificationPhoneNumber: verificationPhoneNumber),
         ),
       );
       if(kDebugMode){
@@ -100,6 +115,50 @@ class AuthViewModel with ChangeNotifier {
       }
     }).onError((error, stackTrace){
       setSignUpLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if(kDebugMode){
+        print(error.toString());
+      }
+    });
+  }
+
+  Future<void> verifyOtpApi(dynamic data , BuildContext context) async {
+
+    //setSignUpLoading(true);
+
+    _myRepo.verifyOtpApi(data).then((value) async {
+      //setSignUpLoading(false);
+      Utils.flushBarErrorMessage('SignUp Successfully', context);
+
+
+
+      // final userPreference = Provider.of<UserViewModel>(context , listen: false);
+      // userPreference.saveUser(
+      //     UserModel(
+      //       firstName: value['first_name'].toString(),
+      //       mobile: value['user_data']['first_name'].toString()),
+      //       token: value['token'].toString(),
+      //     )
+      // );
+
+      // Navigator.pushNamed(context, RoutesName.home);
+
+      ////////////////////////////////////////////////////////
+
+
+      ///////////////////////////////////////////////////
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomePage(),
+        ),
+      );
+      if(kDebugMode){
+        print(value.toString());
+      }
+    }).onError((error, stackTrace){
+      // setSignUpLoading(false);
       Utils.flushBarErrorMessage(error.toString(), context);
       if(kDebugMode){
         print(error.toString());

@@ -26,4 +26,14 @@ class AuthRepository  {
     }
   }
 
+  Future<dynamic> verifyOtpApi(dynamic data )async{
+
+    try{
+      dynamic response = await _apiServices.getPostApiResponse(AppUrl.verifyOtpApiEndPoint, data);
+      return response;
+    }catch(e){
+      throw e;
+    }
+  }
+
 }
