@@ -4,11 +4,13 @@ import '../color.dart';
 class RoundButton extends StatelessWidget {
 
   final String title;
+  final Color buttonColor;
   final bool loading;
   final VoidCallback onPress;
 
   const RoundButton({Key? key,
     required this.title,
+    required this.buttonColor,
     this.loading = false,
     required this.onPress,
   }) : super(key: key);
@@ -28,7 +30,7 @@ class RoundButton extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: AppColors.pinkColor,
+          primary: buttonColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40.0),
           ),

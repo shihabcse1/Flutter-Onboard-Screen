@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_onboarding_screen/Resources/color.dart';
 import 'package:flutter_onboarding_screen/Resources/components/round_button.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -268,6 +269,7 @@ class _VerificationPageState extends State<VerificationPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
             child: RoundButton(
               title: "Verify",
+              buttonColor: AppColors.buttonColor,
               onPress: (){
                 String otp = _firstController.text.toString()
                     + _secondController.text.toString()

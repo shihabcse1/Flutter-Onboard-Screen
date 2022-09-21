@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:flutter_onboarding_screen/Utils/routes/route_names.dart';
 import 'package:flutter_onboarding_screen/Utils/utils.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import '../../Resources/color.dart';
 import '../../Resources/components/round_button.dart';
 import '../../ViewModel/auth_view_model.dart';
 import '../SignUpPage/sign_up_page.dart';
@@ -65,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
         }else if(snapshot.hasData){
           return HomePage();
         }else if(snapshot.hasError){
-          return Center(child: Text("Something went wrong"),);
+          return const Center(child: Text("Something went wrong"),);
         }else {
           return Scaffold(
             appBar: AppBar(
@@ -95,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ],
-              backgroundColor: Color(0xffE0115F),
+              backgroundColor: AppColors.pinkColor,
             ),
             body: SafeArea(
               child: SingleChildScrollView(
@@ -119,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                             Container(
                               height: 48.0,
                               decoration: BoxDecoration(
-                                color: Color(0xffEFEFEF),
+                                color: const Color(0xffEFEFEF),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
@@ -133,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                       border: InputBorder.none,
                                       prefixIcon: Container(
                                         //padding: EdgeInsets.symmetric(vertical: 10),
-                                        margin: EdgeInsets.symmetric(horizontal: 8.0,),
+                                        margin: const EdgeInsets.symmetric(horizontal: 8.0,),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -147,10 +150,10 @@ class _LoginPageState extends State<LoginPage> {
                                               child: Row(
                                                 children: [
                                                   Container(
-                                                    child: countryCode != null ? countryCode!.flagImage : null,
+                                                    child: countryCode?.dialCode == null ? SvgPicture.asset("images/bangladesh.svg") : countryCode!.flagImage,
                                                   ),
                                                   const SizedBox(width: 10,),
-                                                  Icon(
+                                                  const Icon(
                                                     Icons.arrow_drop_down,
                                                     size: 24,
                                                   ),
@@ -162,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                                     ),
                                                     child: Text(
                                                       countryCode?.dialCode ?? "+880",
-                                                      style: TextStyle(color: Colors.black),
+                                                      style: const TextStyle(color: AppColors.blackColor),
                                                     ),
                                                   ),
                                                 ],
@@ -181,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: double.infinity,
                               height: 48.0,
                               decoration: BoxDecoration(
-                                color: Color(0xffEFEFEF),
+                                color: const Color(0xffEFEFEF),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
@@ -216,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 TextButton(
                                   onPressed: () {},
-                                  child: Text("Forgot Password?",
+                                  child: const Text("Forgot Password?",
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
@@ -229,26 +232,29 @@ class _LoginPageState extends State<LoginPage> {
 
                             RoundButton(
                               title: "Sign in",
+                              buttonColor: AppColors.pinkColor,
                               onPress: (){
                                 if(_phoneNumberController.text.isEmpty){
                                   Utils.flushBarErrorMessage("enter your phone number", context);
                                 }else if(_passwordController.text.isEmpty){
                                   Utils.snackBar("enter your password", context);
                                 }else{
-                                  String phoneNumberLogin = "0" + _phoneNumberController.text.trim().toString();
+                                  String phoneNumberLogin = "0${_phoneNumberController.text.trim()}";
                                   Map data = {
                                     'mobile' : phoneNumberLogin,
                                     'password' : _passwordController.text.trim().toString(),
                                   };
                                   authViewModelProvider.loginApi(data, context);
-                                  print("Api Hit");
+                                  if (kDebugMode) {
+                                    print("Api Hit");
+                                  }
                                 }
                               },
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Text(
                                   "or",
                                   style: TextStyle(
@@ -260,6 +266,7 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: deviceHeight * 0.02,),
                             RoundButton(
                               title: "Sign up",
+                              buttonColor: AppColors.pinkColor,
                               onPress: (){
                                 Navigator.push(
                                   context,
@@ -271,10 +278,21 @@ class _LoginPageState extends State<LoginPage> {
                               },
                             ),
                             SizedBox(height: deviceHeight * 0.02,),
-                            ButtonSignUpWithGoogle(),
-                            SizedBox(height: deviceHeight * 0.02,),
-                            ButtonSignUpWithFacebook(),
+                            RoundButton(
+                                title: "Sign up with Google",
+                                buttonColor: AppColors.orangeColorGoogle,
+                                onPress: (){
 
+                                }
+                            ),
+                            SizedBox(height: deviceHeight * 0.02,),
+                            RoundButton(
+                                title: "Sign up with Facebook",
+                                buttonColor: AppColors.purpleColorFacebook,
+                                onPress: (){
+
+                                }
+                            ),
                           ],
                         );
                       },),

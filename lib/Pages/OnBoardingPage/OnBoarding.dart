@@ -3,6 +3,7 @@ import 'package:flutter_onboarding_screen/Pages/HomePage/home_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import '../../Resources/color.dart';
 import 'components/button_get_started.dart';
 import 'content_model.dart';
 
@@ -78,7 +79,7 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
           ),
         ],
-        backgroundColor: Color(0xffE0115F),
+        backgroundColor: AppColors.pinkColor,
       ),
       body: Column(
         children: [
@@ -99,13 +100,13 @@ class _OnBoardingState extends State<OnBoarding> {
                         Text(
                           contents[i].title!,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffE0115F),
+                            color: AppColors.pinkColor,
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         SvgPicture.asset(
                           contents[i].image!,
                           height: 300,
@@ -135,10 +136,10 @@ class _OnBoardingState extends State<OnBoarding> {
     return Container(
        height: 10,
        width: 10,
-       margin: EdgeInsets.only(right: 5),
+       margin: const EdgeInsets.only(right: 5),
        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: currentIndex == index ? Color(0xffE0115F) : Color(0xffEFEFEF),
+          color: currentIndex == index ? const Color(0xffE0115F) : const Color(0xffEFEFEF),
        ),
     );
   }

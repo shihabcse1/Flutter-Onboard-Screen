@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/Pages/LoginPage/login_page.dart';
 import 'package:flutter_onboarding_screen/Pages/VerificationPage/verification_page.dart';
+import 'package:flutter_onboarding_screen/Resources/color.dart';
 import 'package:flutter_onboarding_screen/Resources/components/round_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Container(   // <--- Change here
-            padding: EdgeInsets.only(left: 16.0), // <-- play with the double number
+            padding: const EdgeInsets.only(left: 16.0), // <-- play with the double number
             child: Image.asset("images/logo.png",scale: 2,)
         ),
         actions: [
@@ -90,7 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         ],
-        backgroundColor: Color(0xffE0115F),
+        backgroundColor: AppColors.pinkColor,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -98,13 +100,13 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Container(
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: LayoutBuilder(builder: (ctx, constraints){
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(height: deviceHeight * 0.05,),
-                      Text("Sign Up",
+                      const Text("Sign Up",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -114,7 +116,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
+                          color: AppColors.whiteSmoke,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
@@ -122,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Center(
                             child: TextField(
                               controller: _fullNameController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Full Name',
                               ),
@@ -134,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
+                          color: AppColors.whiteSmoke,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
@@ -162,17 +164,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: Row(
                                           children: [
                                             Container(
-                                              child: countryCode != null ? countryCode!.flagImage : null,
+                                              child: countryCode?.dialCode == null ? SvgPicture.asset("images/bangladesh.svg") : countryCode!.flagImage,
+                                              //countryCode != null ? countryCode!.flagImage : null,
                                             ),
-                                            SizedBox(width: 10,),
-                                            Icon(
+                                            const SizedBox(width: 10,),
+                                            const Icon(
                                               Icons.arrow_drop_down,
                                               size: 24,
                                             ),
                                             Container(
                                               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                                               decoration: BoxDecoration(
-                                                //color: Colors.black,
                                                 borderRadius: BorderRadius.circular(5),
                                               ),
                                               child: Text(
@@ -195,7 +197,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Container(
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
+                          color: AppColors.whiteSmoke,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
@@ -206,7 +208,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.done,
                               maxLines: 1,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'mdhasansridoy@gmail.com',
                               ),
@@ -219,7 +221,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: double.infinity,
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
+                          color: AppColors.whiteSmoke,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
@@ -253,7 +255,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         //height: constraints.maxHeight * 0.09,
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffEFEFEF),
+                          color: AppColors.whiteSmoke,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
@@ -294,7 +296,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               }
                           ),
                           //SizedBox(width: 5.0,),
-                          Text("NID"),
+                          const Text("NID"),
                           Radio(
                               value: 'birth',
                               groupValue: _selectedValidCard,
@@ -305,7 +307,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               }
                           ),
                           //SizedBox(width: 5.0,),
-                          Text("Birth Certificate"),
+                          const Text("Birth Certificate"),
                         ],
                       ),
                       GestureDetector(
@@ -313,10 +315,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           _attachNIDImageFileFront();
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           height: 48.0,
-                          decoration: BoxDecoration(
-                              color: Color(0xffEFEFEF),
+                          decoration: const BoxDecoration(
+                              color: AppColors.whiteSmoke,
                               borderRadius: BorderRadius.all(Radius.circular(12))
                           ),
                           child: Row(
@@ -356,10 +358,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           _attachNIDImageFileBack();
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           height: 48.0,
-                          decoration: BoxDecoration(
-                              color: Color(0xffEFEFEF),
+                          decoration: const BoxDecoration(
+                              color: AppColors.whiteSmoke,
                               borderRadius: BorderRadius.all(Radius.circular(12))
                           ),
                           child: Row(
@@ -396,6 +398,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: deviceHeight * 0.02,),
                       RoundButton(
                         title: "Sign up",
+                        buttonColor: AppColors.pinkColor,
                         onPress: (){
                           if(_fullNameController.text.isEmpty){
                             Utils.flushBarErrorMessage("enter your name", context);
@@ -406,7 +409,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           }else if(_passwordController.text.trim().toString() != _passwordConfirmController.text.trim().toString()){
                             Utils.flushBarErrorMessage("password didn't match", context);
                           }else{
-                            String phoneNumberLogin = "0" + _phoneNumberController.text.trim().toString();
+                            String phoneNumberLogin = "0${_phoneNumberController.text.trim()}";
                             Map data = {
                               'first_name' : _fullNameController.text.trim().toString(),
                               'mobile' : phoneNumberLogin,
@@ -414,7 +417,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               'email' : _emailController.text.trim().toString(),
                             };
                             authViewModelProvider.signUpApi(data , context);
-                            print("Api Hit");
+                            if (kDebugMode) {
+                              print("Api Hit");
+                            }
                           }
                         },
                       ),
@@ -430,7 +435,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               );
                             },
-                            child: Text("Already have a account?",
+                            child: const Text("Already have a account?",
                               style: TextStyle(
                                 color: Color(0xffE0115F),
                               ),
